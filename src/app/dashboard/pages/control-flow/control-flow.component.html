@@ -1,1 +1,74 @@
-<p>control-flow works!</p>
+
+<app-title title="Control Flow"  shadow   />
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-white shadow rounded p-10">
+    <h2 class="text-xl2 font-bold mb-5">if: {{ showContent() }}</h2>
+    <button class="p-2 bg-blue-500 rounded text-white" (click)="toggleButton()">
+      Click me!
+    </button>
+    @if(showContent()){
+    <p>Hello world</p>
+    }@else {
+    <p>***********************</p>
+    }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-xl2 font-bold mb-5">if: {{ showContent() }}</h2>
+
+    <button
+      class="p-2 bg-blue-500 rounded text-white"
+      (click)="toggleButtonGrade('A')"
+    >
+      A
+    </button>
+    <button
+      class="p-2 bg-blue-500 rounded text-white"
+      (click)="toggleButtonGrade('B')"
+    >
+      B
+    </button>
+    <button
+      class="p-2 bg-blue-500 rounded text-white"
+      (click)="toggleButtonGrade('C')"
+    >
+      reprobado
+    </button>
+
+    @switch (grade()) { @case ('A') {
+    <p>arriba de 90</p>
+    } @case ('B') {
+    <p>arriba de 80</p>
+    } @case ('C') {
+    <p>reprobado</p>
+    } }
+  </div>
+
+  <div class="bg-white shadow rounded p-10">
+    <h2 class="text-xl2 font-bold mb-5">Frameworks</h2>
+
+    <ul>
+      @for(framework of listFrameworks(); track framework;
+      let i = $index; let first = $first, let odd = $odd){
+      <li [class]="
+      {
+        'bg-blue-500' : !first
+      }
+      ">{{ i }} - {{ framework }}</li>
+      }@empty {
+      <i> No items found</i>
+      }
+    </ul>
+  </div>
+
+  <div class="bg-white shadow rounded p-10">
+    <h2 class="text-xl2 font-bold mb-5">Frameworks</h2>
+    <ul>
+      @for(framework of []; track framework; let i = $index){
+      <li>{{ i }} - {{ framework }}</li>
+      }@empty {
+      <i> No items found</i>
+      }
+    </ul>
+  </div>
+</section>
